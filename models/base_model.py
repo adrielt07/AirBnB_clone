@@ -15,7 +15,7 @@ class BaseModel:
         self.updated_at = datetime.datetime.today()
 
     def save(self):
-        self.update_at = datetime.datetime.today()
+        self.updated_at = datetime.datetime.today()
 
     def to_dict(self):
         from datetime import datetime, date, time
@@ -26,5 +26,5 @@ class BaseModel:
         return new
 
     def __str__(self):
-        print("[{}] ({}) {}".format(type(self).__name__,
-                                    self.id, self.__dict__))
+        return "[{}] ({}) {}".format(type(self).__name__,
+                                     self.id, self.__dict__)
