@@ -9,7 +9,7 @@ class BaseModel:
     """
     BaseModel Class
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         creates uuid specific for each instance
         """
@@ -19,9 +19,7 @@ class BaseModel:
         self.updated_at = datetime.datetime.today()
 
     def save(self):
-        """
-        updates time - last time instance object is modified
-        """
+        """updates time - last time instance object is modified"""
         self.updated_at = datetime.datetime.today()
 
     def to_dict(self):
@@ -33,13 +31,11 @@ class BaseModel:
         from datetime import datetime, date, time
         new = self.__dict__.copy()
         new['__class__'] = type(self).__name__
-        new['created_at'] = datetime.isoformat(self.created_at)
+        new['created_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         new['updated_at'] = datetime.isoformat(self.updated_at)
         return new
 
     def __str__(self):
-        """
-        Prints Classname, instance id, and dictionary
-        """
+        """Prints Classname, instance id, and dictionary"""
         return "[{}] ({}) {}".format(type(self).__name__,
                                      self.id, self.__dict__)
