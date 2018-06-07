@@ -18,7 +18,9 @@ class BaseModel:
         self.update_at = datetime.date.today()
 
     def to_dict(self):
-        return self.__dict__
+        new = self.__dict__.copy()
+        new['__class__'] = type(self).__name__
+        return new
 
     def __str__(self):
         print("[{}] ({}) {}".format(type(self).__name__,
