@@ -4,6 +4,7 @@ BaseModel that defines all common attributes/methods for other classes
 """
 import datetime
 
+
 class BaseModel:
     """
     BaseModel Class
