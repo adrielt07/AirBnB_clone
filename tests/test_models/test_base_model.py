@@ -13,11 +13,14 @@ class Test_BaseModel(unittest.TestCase):
         self.assertTrue(len(BaseModel.save.__doc__) > 1)
         self.assertTrue(len(BaseModel.to_dict.__doc__) > 1)
 
-    def test_init(self):
+    def test_task0(self):
         my_model = BaseModel()
+        new_model = BaseModel()
         test_dict = my_model.to_dict()
+        self.assertIsInstance(my_model, BaseModel)
         self.assertEqual(type(my_model).__name__, "BaseModel")
         self.assertTrue(type(test_dict['__class__']), 'str')
         self.assertTrue(type(test_dict['created_at']), 'str')
         self.assertTrue(type(test_dict['updated_at']), 'str')
         self.assertTrue(type(test_dict['id']), 'str')
+        self.assertNotEqual(my_model.id, new_model.id)
