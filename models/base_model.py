@@ -3,6 +3,7 @@
 BaseModel that defines all common attributes/methods for other classes
 """
 
+from datetime import datetime
 
 class BaseModel:
     """
@@ -12,24 +13,25 @@ class BaseModel:
         """
         creates uuid specific for each instance
         """
-        from datetime import datetime
         import uuid
 
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
                     setattr(self, key,
-                            datetime.strptime(value,"%Y-%m-%dT%H:%M:%S.%f"))
-                if key != '__class__':
-                    setattr(self, key, value)
+                            datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                else:
+                    if key != '__class__':
+                        setattr(self, key, value)
+
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.today()
-            self.updated_at = datetime.today()
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def save(self):
         """updates time - last time instance object is modified"""
-        self.updated_at = datetime.datetime.today()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """
