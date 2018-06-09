@@ -14,7 +14,6 @@ class BaseModel:
         """
         creates uuid specific for each instance
         """
-#        from models.__init__ import storage
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
