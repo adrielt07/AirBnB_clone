@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+FileStorage module
+"""
 import json
 import models
 
