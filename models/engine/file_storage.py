@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-
+"""
+FileStorage that defines all JSON encoding and decoding
+"""
 import json
-from models.base_model import BaseModel
+import models
 
 class FileStorage:
     """
@@ -17,25 +19,23 @@ class FileStorage:
     def new(self, obj):
         """turn python objects into a specific dict format in __objects"""
         key = "{}.{}".format(type(obj).__name__, obj.id)
-        self.__objects[key] = obj.to_dict()
+        self.__objects[key] = obj
 
     def save(self):
         """take __objects and convert to JSON in a file"""
         new_dict = {}
-        print("haah {}".format(self.__objects))
         for k, v in self.__objects.items():
             new_dict[k] = v.to_dict()
-            print("newdict = {}".format(new_dict))
-        with open(self.__file_path, 'w', encoding="utf-8") as f:
+        with open(self.__file_path, 'w', encoding="UTF-8") as f:
             json.dump(new_dict, f)
 
     def reload(self):
         """take json file and convert back to dictionary"""
         try:
-            with open(self.__file_path, 'r', encoding="utf-8") as f:
+            with open(self.__file_path, 'r', encoding="UTF-8") as f:
                 current = json.load(f)
                 for k, v in current.items():
-                        __objects[k] = eval("BaseModel"(**v))
-        except:
-            print("IN the except")
+                    func = "models.{}".format(v['__class__'])
+                    self.__objects[k] = eval(func)(**v)
+        except FileNotFoundError:
             pass
