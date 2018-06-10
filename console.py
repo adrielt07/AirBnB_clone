@@ -49,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, args):
-        """Deletes  an instance"""
+        """Deletes an existing instance"""
         args = "".join(args).split()
         key = models.error_check(args)
         if key == 0:
@@ -59,6 +59,28 @@ class HBNBCommand(cmd.Cmd):
             del obj_dict[key]
         except KeyError:
             print("** no instance found **")
+
+    def do_all(self, args):
+        """Print instances: can print class-specific"""
+        args = "".join(args).split()
+        obj_dict = models.storage.all()
+        #all w/o class name
+        if len(args) == 0:
+            for obj_id in obj_dict.keys():
+                obj = obj_dict[obj_id]
+                print(obj)
+        #all w/class name
+        else:
+            try:
+                eval("models.{}".format(args[0]))()
+            except AttributeError:
+                print("** class doesn't exist **")
+                return
+            else:
+                for k, v in obj_dict.items():
+                    if v.to_dict()['__class__'] == args[0]:
+                        obj = obj_dict[k]
+                        print(obj)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
