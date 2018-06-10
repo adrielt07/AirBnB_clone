@@ -34,7 +34,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, *arg):
         try:
-            
         except AttributeError:
             print("** class doesn't exist **")
         except SyntaxError:
