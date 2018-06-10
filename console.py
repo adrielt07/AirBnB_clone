@@ -19,25 +19,34 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        print("", end="")
+        """Empty line"""
+        pass
 
-    def do_create(self, *arg):
-        try:
-            func = "models.{}".format(arg[0])
-            model = eval(func)()
-            model.save()
-            print(model.id)
-        except AttributeError:
-            print("** class doesn't exist **")
-        except SyntaxError:
+    def do_create(self, args):
+        """Create a new instance of a class"""
+        args = "".join(args).split()
+        #check that there isn't more than one arg
+        if len(args) == 1:
+            error = models.error_check(args, 1)
+            if error != 0:
+                model = eval("models.{}".format(args[0]))()
+                model.save()
+                print(model.id)
+        else:
             print("** class name missing **")
 
-    def do_show(self, *arg):
+    def do_show(self, args):
+        """Print the instance's class name and ID"""
+        args = "".join(args).split()
+        key = models.error_check(args)
+        if key == 0:
+            return
         try:
-        except AttributeError:
-            print("** class doesn't exist **")
-        except SyntaxError:
-            print("** class name missing **")
+            obj_dict = models.storage.all()
+            value = obj_dict[key]
+            print(value)
+        except KeyError:
+            print("** no instance found **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
