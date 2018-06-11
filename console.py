@@ -82,5 +82,40 @@ class HBNBCommand(cmd.Cmd):
                         obj = obj_dict[k]
                         print(obj)
 
+    def do_update(self, args):
+        args = "".join(args).split()
+        key = models.error_check(args)
+        if key == 0:
+            return
+        try:
+        #check ID is valid
+            obj_dict = models.storage.all()
+            value = obj_dict[key]
+        except KeyError:
+            print("** no instance found **")
+            return
+        if len(args) == 2:
+        #check attribute is inputed
+            print("** attribute name missing **")
+            return
+        if len(args) == 3:
+        #check attribute value is inputed
+            print("** value missing **")
+            return
+        try:
+        #check attribute is valid
+            value_dict = value.to_dict()
+            if hasattr(value_dict, args[2]):
+                setattr(value_dict, args[2], args[3])
+                print(value_dict)
+            else:
+                value_dict[args[2]] = args[3]
+                value.save()
+                print("value = {}".format(value))
+                print("value_dict = {}".format(value_dict))
+        except NameError:
+            print("tee")
+            
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
