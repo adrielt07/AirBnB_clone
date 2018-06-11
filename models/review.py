@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """Module: review - Class: Review"""
-import models
+from models.base_model import BaseModel
 
 
-class Review(models.BaseModel):
+class Review(BaseModel):
     """
-    Inherting from BaseModel
-    Setting class attribute
+    Inheritive from BaseModel
+    class Review
     """
     place_id = ""
     user_id = ""

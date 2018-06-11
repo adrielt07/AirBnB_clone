@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Module: place- Class: Place"""
-import models
+from models.base_model import BaseModel
 
 
-class Place(models.BaseModel):
+class Place(BaseModel):
     """
     Inherting from BaseModel
     Setting class attribute

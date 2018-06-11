@@ -45,6 +45,7 @@ class HBNBCommand(cmd.Cmd):
             obj_dict = models.storage.all()
             value = obj_dict[key]
             print(value)
+            print("From __dict__{}".format(value.__dict__))
         except KeyError:
             print("** no instance found **")
 
@@ -83,6 +84,10 @@ class HBNBCommand(cmd.Cmd):
                         print(obj)
 
     def do_update(self, args):
+        """
+        update exisiting instances
+        Ex: update BaseModel 123 email "aibnb@holbertonschool.com"
+        """
         args = "".join(args).split()
         key = models.error_check(args)
         if key == 0:
@@ -102,9 +107,8 @@ class HBNBCommand(cmd.Cmd):
         #check attribute value is inputed
             print("** value missing **")
             return
-
         #check attribute is valid
-        new_args3 = args[3].replace('"','')
+        new_args3 = args[3].replace('"', '')
         if hasattr(value, args[2]):
             item = getattr(value, args[2])
             convert = type(item)
