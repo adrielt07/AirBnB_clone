@@ -102,13 +102,10 @@ class HBNBCommand(cmd.Cmd):
         #check attribute value is inputed
             print("** value missing **")
             return
-        try:
         #check attribute is valid
-            new_args3 = args[3].replace('"','')
-            setattr(value, args[2], new_args3)
-            value.save()
-        except NameError:
-            print("tee")
+        new_args3 = args[3].replace('"','')
+        setattr(value, args[2], new_args3)
+        value.save()
             
 
 if __name__ == '__main__':
