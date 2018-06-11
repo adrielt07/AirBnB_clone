@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Module: review - Class: Review"""
-from models.base_model import BaseModel
+import models
 
 
-class Review(BaseModel):
+class Review(models.BaseModel):
     """
     Inheritive from BaseModel
     class Review

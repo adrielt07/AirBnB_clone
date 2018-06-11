@@ -2,10 +2,10 @@
 """
 Module with State class
 """
-from models.base_model import BaseModel
+import models
 
 
-class State(BaseModel):
+class State(models.BaseModel):
     """
     Inherting from BaseModel
     Setting Attribute
