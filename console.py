@@ -83,6 +83,10 @@ class HBNBCommand(cmd.Cmd):
                         print(obj)
 
     def do_update(self, args):
+        """
+        update exisiting instances
+        Ex: update BaseModel 123 email "aibnb@holbertonschool.com"
+        """
         args = "".join(args).split()
         key = models.error_check(args)
         if key == 0:
@@ -102,15 +106,15 @@ class HBNBCommand(cmd.Cmd):
         #check attribute value is inputed
             print("** value missing **")
             return
-
         #check attribute is valid
-        new_args3 = args[3].replace('"','')
+        new_args3 = args[3].replace('"', '')
         if hasattr(value, args[2]):
             item = getattr(value, args[2])
             convert = type(item)
             new_args3 = convert(new_args3)
         setattr(value, args[2], new_args3)
         value.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
