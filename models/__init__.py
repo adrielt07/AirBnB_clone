@@ -11,7 +11,9 @@ storage.reload()
 if __name__ != '__main__':
     def error_check(list_arg=[], n=0):
         """Check for common error messages for all methods"""
-        check_class = ['BaseModel', 'User']
+        check_class = ['BaseModel', 'User', 'State',
+                       'City', 'Amenity', 'Place', 'Review']
+
         try:
             class_name = "{}".format(list_arg[0])
         except IndexError:
