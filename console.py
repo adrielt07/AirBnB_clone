@@ -104,7 +104,6 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
         #check attribute is valid
-            arg_type = type(args[2])
             new_args3 = args[3].replace('"','')
             setattr(value, args[2], new_args3)
             value.save()
