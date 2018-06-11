@@ -104,15 +104,10 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
         #check attribute is valid
-            value_dict = value.to_dict()
-            if hasattr(value_dict, args[2]):
-                setattr(value_dict, args[2], args[3])
-                print(value_dict)
-            else:
-                value_dict[args[2]] = args[3]
-                value.save()
-                print("value = {}".format(value))
-                print("value_dict = {}".format(value_dict))
+            arg_type = type(args[2])
+            new_args3 = args[3].replace('"','')
+            setattr(value, args[2], new_args3)
+            value.save()
         except NameError:
             print("tee")
             
