@@ -11,14 +11,14 @@ storage.reload()
 if __name__ != '__main__':
     def error_check(list_arg=[], n=0):
         """Check for common error messages for all methods"""
+        check_class = ['BaseModel', 'User']
         try:
             class_name = "{}".format(list_arg[0])
-            eval(class_name)()
         except IndexError:
             if len(list_arg) == 0:
                 print("** class name missing **")
                 return 0
-        except NameError:
+        if class_name not in check_class:
             print("** class doesn't exist **")
             return 0
 
