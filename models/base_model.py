@@ -2,9 +2,8 @@
 """
 BaseModel that defines all common attributes/methods for other classes
 """
-from datetime import datetime, date, time
-import models
 import uuid
+from datetime import datetime, date, time
 
 
 class BaseModel:
@@ -15,6 +14,7 @@ class BaseModel:
         """
         creates uuid specific for each instance
         """
+        import models
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
@@ -23,7 +23,6 @@ class BaseModel:
                 else:
                     if key != '__class__':
                         setattr(self, key, value)
-
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -32,6 +31,7 @@ class BaseModel:
 
     def save(self):
         """updates time - last time instance object is modified"""
+        import models
         self.updated_at = datetime.now()
         models.storage.save()
 
