@@ -7,6 +7,7 @@ import models
 
 
 class HBNBCommand(cmd.Cmd):
+    """Console Interpreter"""
     intro = 'Welcome to the AirBnB shell. Type help or ? to list commands.\n'
     prompt = '(hbnb) '
 
