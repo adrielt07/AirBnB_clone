@@ -117,24 +117,38 @@ class HBNBCommand(cmd.Cmd):
         value.save()
 
     def do_count(self, arg):
-        pass
+        arg = arg.split()
+        obj = models.storage.all()
+        counter = 0
+        for key, value in obj.items():
+            compare = key.split(".")
+            if arg[0] == compare[0]:
+                counter += 1
+        print(counter)
 
     def default(self, line):
         function = {'all': self.do_all,
                     'create': self.do_create,
                     'update': self.do_update,
                     'destroy': self.do_destroy,
-                    'show': self.do_show}
+                    'show': self.do_show,
+                    'count': self.do_count}
         delim = ['.', '(', ')']
+        delim2 = [',', '"']
         b = ""
         for c in line:
             if c in delim:
                 b += '.'
+            elif c in delim2:
+                b += ""
             else:
                 b += c
         arg = b.split('.')
+        string = "{}".format(arg[0])
+        if arg[2] != "":
+            string = "{} {}".format(arg[0], arg[2])
         func = function[arg[1]]
-        func(arg[0])
+        func(string)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
