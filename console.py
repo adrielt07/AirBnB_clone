@@ -10,6 +10,18 @@ class HBNBCommand(cmd.Cmd):
     """Console Interpreter"""
     prompt = '(hbnb) '
 
+    def do_quit(self, args):
+        """Quit command to exit the program"""
+        return True
+
+    def do_EOF(self, args):
+        """Receives End Of File signal and exits out of program"""
+        return True
+
+    def emptyline(self):
+        """Empty line"""
+        pass
+
     def do_create(self, args):
         """Create a new instance of a class"""
         args = "".join(args).split()
@@ -104,17 +116,25 @@ class HBNBCommand(cmd.Cmd):
         setattr(value, args[2], new_args3)
         value.save()
 
-    def do_quit(self, args):
-        """Quit command to exit the program"""
-        return True
-
-    def do_EOF(self, args):
-        """Receives End Of File signal and exits out of program"""
-        return True
-
-    def emptyline(self):
-        """Empty line"""
+    def do_count(self, arg):
         pass
+
+    def default(self, line):
+        function = {'all': self.do_all,
+                    'create': self.do_create,
+                    'update': self.do_update,
+                    'destroy': self.do_destroy,
+                    'show': self.do_show}
+        delim = ['.', '(', ')']
+        b = ""
+        for c in line:
+            if c in delim:
+                b += '.'
+            else:
+                b += c
+        arg = b.split('.')
+        func = function[arg[1]]
+        func(arg[0])
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
