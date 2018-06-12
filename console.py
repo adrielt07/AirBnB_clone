@@ -7,8 +7,8 @@ import models
 
 
 class HBNBCommand(cmd.Cmd):
-    intro = 'Welcome to the AirBnB shell. Type help or ? to list commands.\n'
-    prompt = '(hbnb)'
+    """Console Interpreter"""
+    prompt = '(hbnb) '
 
     def do_quit(self, args):
         """Quit command to exit the program"""
@@ -45,7 +45,6 @@ class HBNBCommand(cmd.Cmd):
             obj_dict = models.storage.all()
             value = obj_dict[key]
             print(value)
-            print("From __dict__{}".format(value.__dict__))
         except KeyError:
             print("** no instance found **")
 
@@ -58,6 +57,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             obj_dict = models.storage.all()
             del obj_dict[key]
+            models.storage.save()
         except KeyError:
             print("** no instance found **")
 
@@ -115,6 +115,18 @@ class HBNBCommand(cmd.Cmd):
             new_args3 = convert(new_args3)
         setattr(value, args[2], new_args3)
         value.save()
+
+    def do_quit(self, args):
+        """Quit command to exit the program"""
+        return True
+
+    def do_EOF(self, args):
+        """Receives End Of File signal and exits out of program"""
+        return True
+
+    def emptyline(self):
+        """Empty line"""
+        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
