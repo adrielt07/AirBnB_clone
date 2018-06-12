@@ -72,11 +72,8 @@ class HBNBCommand(cmd.Cmd):
                 print(obj)
         #all w/class name
         else:
-            try:
-                eval("models.{}".format(args[0]))()
-            except AttributeError:
-                print("** class doesn't exist **")
-                return
+            if models.error_check(args, 1) == 0:
+                    return
             else:
                 for k, v in obj_dict.items():
                     if v.to_dict()['__class__'] == args[0]:
@@ -117,6 +114,7 @@ class HBNBCommand(cmd.Cmd):
         value.save()
 
     def do_count(self, arg):
+        """Prints number of instance"""
         arg = arg.split()
         obj = models.storage.all()
         counter = 0
@@ -127,6 +125,14 @@ class HBNBCommand(cmd.Cmd):
         print(counter)
 
     def default(self, line):
+        """
+        Execute command using:
+        classname.cmd()
+        Ex:
+
+        User.all()
+        User.destroy(<id>)
+        """
         function = {'all': self.do_all,
                     'create': self.do_create,
                     'update': self.do_update,
