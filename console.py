@@ -8,7 +8,7 @@ import models
 
 class HBNBCommand(cmd.Cmd):
     intro = 'Welcome to the AirBnB shell. Type help or ? to list commands.\n'
-    prompt = '(hbnb) '
+    prompt = '(hbnb)'
 
     def do_quit(self, args):
         """Quit command to exit the program"""
