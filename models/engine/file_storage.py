@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-FileStorage module
+file_storage module
 """
 import json
 import models
