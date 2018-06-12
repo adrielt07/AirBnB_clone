@@ -8,21 +8,7 @@ import models
 
 class HBNBCommand(cmd.Cmd):
     """Console Interpreter"""
-    intro = 'Welcome to the AirBnB shell. Type help or ? to list commands.\n'
     prompt = '(hbnb) '
-
-    def do_quit(self, args):
-        """Quit command to exit the program"""
-        return True
-
-    def do_EOF(self, args):
-        """Receives End Of File signal and exits out of program"""
-        print()
-        return True
-
-    def emptyline(self):
-        """Empty line"""
-        pass
 
     def do_create(self, args):
         """Create a new instance of a class"""
@@ -117,6 +103,18 @@ class HBNBCommand(cmd.Cmd):
             new_args3 = convert(new_args3)
         setattr(value, args[2], new_args3)
         value.save()
+
+    def do_quit(self, args):
+        """Quit command to exit the program"""
+        return True
+
+    def do_EOF(self, args):
+        """Receives End Of File signal and exits out of program"""
+        return True
+
+    def emptyline(self):
+        """Empty line"""
+        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
