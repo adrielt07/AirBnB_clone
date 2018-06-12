@@ -45,7 +45,6 @@ class HBNBCommand(cmd.Cmd):
             obj_dict = models.storage.all()
             value = obj_dict[key]
             print(value)
-            print("From __dict__{}".format(value.__dict__))
         except KeyError:
             print("** no instance found **")
 
@@ -58,6 +57,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             obj_dict = models.storage.all()
             del obj_dict[key]
+            models.storage.save()
         except KeyError:
             print("** no instance found **")
 
