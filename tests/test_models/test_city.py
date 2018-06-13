@@ -58,7 +58,6 @@ class Test_City(unittest.TestCase):
         self.assertFalse(hasattr(c00, "updated_at"))
         self.assertTrue(hasattr(c00, "__class__"))
 
-
     def test_before_todict(self):
         """test instances before method todict conversion"""
         c1 = City()
@@ -111,4 +110,3 @@ class Test_City(unittest.TestCase):
         self.assertTrue(hasattr(c2, "id"))
         self.assertTrue(hasattr(c2, "state_id"))
         self.assertTrue(hasattr(c2, "name"))
-
