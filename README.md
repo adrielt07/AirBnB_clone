@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 # AirBnB Clone - The Console
 ![HolbertonBnB Logo](https://user-images.githubusercontent.com/33245729/41383392-58f3dbb8-6f25-11e8-8215-d7c3832c0ae8.png)
 
