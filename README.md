@@ -1,5 +1,10 @@
-# V1 AirBnB Clone - The Console
-![65f4a1dd9c51265f49d0](https://user-images.githubusercontent.com/33245729/41383392-58f3dbb8-6f25-11e8-8215-d7c3832c0ae8.png)
+<<<<<<< Updated upstream
+# AirBnB Clone - The Console
+![HolbertonBnB Logo](https://user-images.githubusercontent.com/33245729/41383392-58f3dbb8-6f25-11e8-8215-d7c3832c0ae8.png)
+
+This version is the first portion of the Holberton AirBnB project, which is a project designed to develop an in-depth understanding of higher-level programming. Once combined with other fundamental segments of the AirBnB project, this app will be able to emulate a simple version of the AirBnB website. 
+
+In this version, the console is a command interpreter that creates and manages objects.
 
 
 ## Basic Usage
@@ -114,6 +119,7 @@ To run tests by folder, run the following command:
 python3 -m unittest tests/test_models/<file>.py
 ```
 
+
 ## Bugs
 * When updating, it can only take one attribute at a time. Future versions may improve that
 
@@ -123,7 +129,7 @@ python3 -m unittest tests/test_models/<file>.py
 ## Authors
 Amy Tai | [GitHub](https://github.com/Wyrd00) | [Twitter](https://twitter.com/flyaway0120) | [LinkedIn](https://www.linkedin.com/in/Wyrd00/)
 
-Adriel Tolentino | [GitHub])(https://github.com/adrielt07) | [Twitter](https://twitter.com/am__adriel) | [LinkedIn](https://www.linkedin.com/in/adriel-tolentino)
+Adriel Tolentino | [GitHub](https://github.com/adrielt07) | [Twitter](https://twitter.com/am__adriel) | [LinkedIn](https://www.linkedin.com/in/adriel-tolentino)
 
 
 ## License
