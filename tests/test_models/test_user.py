@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """
-Unittest for user_model
+Unittest for base_model
 """
 import unittest
-import sys
-from io import StringIO
+import os
+from models.base_model import BaseModel
 from models.user import User
 import pep8
 
@@ -31,50 +31,48 @@ class Test_User(unittest.TestCase):
         """
         redirect stdout of the output for functions using print
         """
-        sys.stdout = StringIO
+        pass
 
     def tearDown(self):
         """
         re-establish the stdout back to normal after setUp
         """
-        sys.stdout = sys.__stdout__
+        try:
+            os.remove("file.json")
+        except:
+            pass
 
     def test_init_arg(self):
         """pass in arg to new instance"""
-        b0 = User(12)
-        self.assertEqual(type(b0).__name__, "User")
-        self.assertFalse(hasattr(b0, "12"))
+        user0 = User(12)
+        self.assertEqual(type(user0).__name__, "User")
+        self.assertFalse(hasattr(user0, "12"))
 
     def test_init_kwarg(self):
         """pass in kwargs to instance"""
-        b00 = User(name="Tehe")
-        self.assertEqual(type(b00).__name__, "User")
-        self.assertTrue(hasattr(b00, "name"))
-        self.assertFalse(hasattr(b00, "id"))
-        self.assertFalse(hasattr(b00, "created_at"))
-        self.assertFalse(hasattr(b00, "updated_at"))
-        self.assertTrue(hasattr(b00, "__class__"))
-
-    def test_init_argfail(self):
-        """init arg should fail"""
-        b000 = User()
+        user00 = User(name="Tehe")
+        self.assertEqual(type(user00).__name__, "User")
+        self.assertTrue(hasattr(user00, "name"))
+        self.assertFalse(hasattr(user00, "id"))
+        self.assertFalse(hasattr(user00, "created_at"))
+        self.assertFalse(hasattr(user00, "updated_at"))
+        self.assertTrue(hasattr(user00, "__class__"))
 
     def test_before_todict(self):
         """test instances before method todict conversion"""
-        b1 = User()
-        b1_dict = b1.__dict__
-        self.assertEqual(type(b1).__name__, "User")
-        self.assertTrue(hasattr(b1, '__class__'))
-        self.assertEqual(str(b1.__class__),
+        user1 = User()
+        user1_dict = user1.__dict__
+        self.assertEqual(type(user1).__name__, "User")
+        self.assertTrue(hasattr(user1, '__class__'))
+        self.assertEqual(str(user1.__class__),
                          "<class 'models.user.User'>")
-        self.assertTrue(type(b1_dict['created_at']), 'datetime.datetime')
-        self.assertTrue(type(b1_dict['updated_at']), 'datetime.datetime')
-        self.assertTrue(type(b1_dict['id']), 'str')
+        self.assertTrue(type(user1_dict['created_at']), 'datetime.datetime')
+        self.assertTrue(type(user1_dict['updated_at']), 'datetime.datetime')
+        self.assertTrue(type(user1_dict['id']), 'str')
 
     def test_after_todict(self):
         """test instances after method to_dict conversion"""
         my_model = User()
-        new_model = User()
         test_dict = my_model.to_dict()
         self.assertIsInstance(my_model, User)
         self.assertEqual(type(my_model).__name__, "User")
@@ -83,19 +81,32 @@ class Test_User(unittest.TestCase):
         self.assertTrue(type(test_dict['created_at']), 'str')
         self.assertTrue(type(test_dict['updated_at']), 'str')
         self.assertTrue(type(test_dict['id']), 'str')
-        self.assertNotEqual(my_model.id, new_model.id)
 
     def test_str_method(self):
         """test that each method is printing accurately"""
-        b3 = User()
-        b3printed = b3.__str__()
-        self.assertEqual(b3printed,
-                         "[User] ({}) {}".format(b3.id, b3.__dict__))
+        user3 = User()
+        user3printed = user3.__str__()
+        self.assertEqual(user3printed,
+                         "[User] ({}) {}".format(user3.id, user3.__dict__))
+
+    def test_subclass(self):
+        """test subclass"""
+        user89 = User()
+        self.assertTrue(isinstance(user89, BaseModel))
+        self.assertTrue(isinstance(user89, User))
+
+    def test_characteristics(self):
+        """test various characteristics of instance"""
+        user99 = User()
+        self.assertFalse(callable(user99))
 
     def test_hasattribute(self):
         """test that instance of Base have been correctly made"""
-        b2 = User()
-        self.assertTrue(hasattr(b2, "__init__"))
-        self.assertTrue(hasattr(b2, "created_at"))
-        self.assertTrue(hasattr(b2, "updated_at"))
-        self.assertTrue(hasattr(b2, "id"))
+        user2 = User()
+        self.assertTrue(hasattr(user2, "created_at"))
+        self.assertTrue(hasattr(user2, "updated_at"))
+        self.assertTrue(hasattr(user2, "id"))
+        self.assertTrue(hasattr(user2, "email"))
+        self.assertTrue(hasattr(user2, "password"))
+        self.assertTrue(hasattr(user2, "first_name"))
+        self.assertTrue(hasattr(user2, "last_name"))
