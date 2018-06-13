@@ -1,5 +1,6 @@
 # V1 AirBnB Clone - The Console
-![The Logo]![alt text](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJIMMWEC6CH2PXSCQ%2F20180613%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20180613T220049Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=fcc9ffab23ac53f0118d4424952caf0f48a2cd41568b0601195e075242925db0)
+![65f4a1dd9c51265f49d0](https://user-images.githubusercontent.com/33245729/41383392-58f3dbb8-6f25-11e8-8215-d7c3832c0ae8.png)
+
 
 ## Basic Usage
 * Create a new object (ex: a new User or a new Place)
