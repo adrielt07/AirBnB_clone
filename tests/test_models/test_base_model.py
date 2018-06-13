@@ -28,16 +28,15 @@ class Test_BaseModel(unittest.TestCase):
         self.assertEqual(result.total_errors, 0, "pep8")
 
     def setUp(self):
-        """
-        redirect stdout of the output for functions using print
-        """
-        sys.stdout = StringIO
+        """set up before every test method"""
+        pass
 
     def tearDown(self):
-        """
-        re-establish the stdout back to normal after setUp
-        """
-        sys.stdout = sys.__stdout__
+        """remove file.json after the finish of each test method"""
+        try:
+            os.remove("file.json")
+        except:
+            pass
 
     def test_init_arg(self):
         """pass in arg to new instance"""
