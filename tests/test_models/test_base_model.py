@@ -55,10 +55,6 @@ class Test_BaseModel(unittest.TestCase):
         self.assertFalse(hasattr(b00, "updated_at"))
         self.assertTrue(hasattr(b00, "__class__"))
 
-    def test_init_argfail(self):
-        """init arg should fail"""
-        b000 = BaseModel()
-
     def test_before_todict(self):
         """test instances before method todict conversion"""
         b1 = BaseModel()
