@@ -108,4 +108,3 @@ class Test_State(unittest.TestCase):
         self.assertTrue(hasattr(s2, "updated_at"))
         self.assertTrue(hasattr(s2, "id"))
         self.assertTrue(hasattr(s2, "name"))
-

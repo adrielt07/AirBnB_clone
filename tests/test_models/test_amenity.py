@@ -58,7 +58,6 @@ class Test_Amenity(unittest.TestCase):
         self.assertFalse(hasattr(a00, "updated_at"))
         self.assertTrue(hasattr(a00, "__class__"))
 
-
     def test_before_todict(self):
         """test instances before method todict conversion"""
         a1 = Amenity()
@@ -109,4 +108,3 @@ class Test_Amenity(unittest.TestCase):
         self.assertTrue(hasattr(a2, "updated_at"))
         self.assertTrue(hasattr(a2, "id"))
         self.assertTrue(hasattr(a2, "name"))
-
