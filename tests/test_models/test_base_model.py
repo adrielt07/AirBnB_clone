@@ -54,6 +54,13 @@ class Test_BaseModel(unittest.TestCase):
         self.assertFalse(hasattr(b00, "updated_at"))
         self.assertTrue(hasattr(b00, "__class__"))
 
+    def test_datetime(self):
+        """test datetime for created_at and updated_at is the same"""
+        mom = BaseModel()
+        self.assertEqual(mom.created_at, mom.updated_at)
+        mom_dict = mom.to_dict()
+        self.assertEqual(mom_dict['created_at'], mom_dict['updated_at'])
+
     def test_before_todict(self):
         """test instances before method todict conversion"""
         b1 = BaseModel()
