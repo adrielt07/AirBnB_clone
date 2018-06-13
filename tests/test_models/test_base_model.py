@@ -60,6 +60,9 @@ class Test_BaseModel(unittest.TestCase):
         self.assertEqual(mom.created_at, mom.updated_at)
         mom_dict = mom.to_dict()
         self.assertEqual(mom_dict['created_at'], mom_dict['updated_at'])
+        mom.save()
+        mom_dict = mom.to_dict()
+        self.assertNotEqual(mom_dict['created_at'], mom_dict['updated_at'])
 
     def test_before_todict(self):
         """test instances before method todict conversion"""
