@@ -165,9 +165,10 @@ class HBNBCommand(cmd.Cmd):
             if '{' in arg[2]:
                 self.parse(arg[0], arg[2])
                 return
+        delim3 = ['(', ')', '.']
         b = ""
         for c in line:
-            if c in delim:
+            if c in delim3:
                 b += '.'
             elif c in delim2:
                 b += ""
