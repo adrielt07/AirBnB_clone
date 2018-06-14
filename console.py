@@ -3,6 +3,7 @@
 Entry point to command interpreter
 """
 import cmd
+import json
 import models
 
 
@@ -125,6 +126,18 @@ class HBNBCommand(cmd.Cmd):
                 counter += 1
         print(counter)
 
+    def parse(self, classname, arg):
+        new_arg = arg.split('{')
+        baseid = new_arg[0][0:-2]
+        new_dict = "{"
+        delim = ["'"]
+        for c in new_arg[1]:
+            new_dict += c
+        obj_dict = json.loads(new_dict)
+        for k, v in obj_dict.items():
+            string = "{} {} {} {}".format(classname, baseid, k, v)
+            self.do_update(string)
+
     def default(self, line):
         """
         Execute command using:
@@ -139,8 +152,19 @@ class HBNBCommand(cmd.Cmd):
                     'destroy': self.do_destroy,
                     'show': self.do_show,
                     'count': self.do_count}
-        delim = ['.', '(', ')']
+        delim = ['(', ')']
         delim2 = [',', '"']
+        text = ""
+        for c in line:
+            if c in delim:
+                text += '.'
+            else:
+                text += c
+        arg = text.split('.')
+        if arg[1] == 'update':
+            if '{' in arg[2]:
+                self.parse(arg[0], arg[2])
+                return
         b = ""
         for c in line:
             if c in delim:
