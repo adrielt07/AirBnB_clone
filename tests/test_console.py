@@ -8,6 +8,8 @@ from console import HBNBCommand
 import unittest
 from io import StringIO
 import sys
+from unittest.mock import create_autospec
+
 
 class Test_Console(unittest.TestCase):
     """
